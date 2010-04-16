@@ -66,7 +66,7 @@ function jsUnitFixTop() {
   top = tempTop;
 }
 
-jsUnitFixTop();
+//jsUnitFixTop(); //for standalone cmdline running, where there is no window
 
 function _displayStringForValue(aVar) {
   if (aVar === null)

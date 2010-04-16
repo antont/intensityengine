@@ -1,7 +1,26 @@
 #!/usr/bin/python
 
-# Copyright 2010 Alon Zakai ('kripken'). All rights reserved.
-# This file is part of Syntensity/the Intensity Engine, an open source project. See COPYING.txt for licensing.
+#=============================================================================
+# Copyright (C) 2008 Alon Zakai ('Kripken') kripkensteiner@gmail.com
+#
+# This file is part of the Intensity Engine project,
+#    http://www.intensityengine.com
+#
+# The Intensity Engine is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, version 3.
+#
+# The Intensity Engine is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with the Intensity Engine.  If not, see
+#     http://www.gnu.org/licenses/
+#     http://www.gnu.org/licenses/agpl-3.0.html
+#=============================================================================
+
 
 # Initialize
 
@@ -13,6 +32,13 @@ Global.init_as_client()
 
 import intensity.c_module
 CModule = intensity.c_module.CModule.holder
+
+#REX
+try:
+    CModule.log
+except: #we are not running inside sauer-intensity, CModule is not populated
+    intensity.c_module.init_mock()
+
 
 print "Intensity Engine Client parameters:", sys.argv
 

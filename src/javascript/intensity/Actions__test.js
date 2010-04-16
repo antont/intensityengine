@@ -1,6 +1,43 @@
 
-// Copyright 2010 Alon Zakai ('kripken'). All rights reserved.
-// This file is part of Syntensity/the Intensity Engine, an open source project. See COPYING.txt for licensing.
+/*
+ *=============================================================================
+ * Copyright (C) 2008 Alon Zakai ('Kripken') kripkensteiner@gmail.com
+ *
+ * This file is part of the Intensity Engine project,
+ *    http://www.intensityengine.com
+ *
+ * The Intensity Engine is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * The Intensity Engine is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with the Intensity Engine.  If not, see
+ *     http://www.gnu.org/licenses/
+ *     http://www.gnu.org/licenses/agpl-3.0.html
+ *=============================================================================
+ */
+
+//require('./__Testing');
+//require('../jsUnit');
+//require('../SimpleInheritance');
+//require('./Actions');
+
+/*js> 
+load('Platform.js')
+load('../MochiKit.js')
+load('../jsUnit.js')
+load('../SimpleInheritance.js')
+load('../MockLogging.js') //REX for standalone running test
+load('../LoggingExtras.js')
+
+load('__Testing.js')
+load('Actions.js')
+*/
 
 Testing.replaceEnvironment();
 
@@ -11,7 +48,10 @@ var parent = {};
 parent.actionSystem = new ActionSystem(parent);
 parent.setSleep = function(seconds) { };
 
+//why like this? fails on Rhino (which happened to have for running) #REX
+//ah apparently is a logging one, defined in LoggingExtras.js
 eval(assert(" parent.actionSystem.isEmpty() "));
+//assert(parent.actionSystem.isEmpty()); //REX
 
 var feedback = 0;
 
