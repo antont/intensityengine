@@ -39,7 +39,10 @@ load('__Testing.js')
 load('Actions.js')
 */
 
+print("Begin Actions__test");
 Testing.replaceEnvironment();
+
+print("1");
 
 // Tests
 
@@ -48,10 +51,15 @@ var parent = {};
 parent.actionSystem = new ActionSystem(parent);
 parent.setSleep = function(seconds) { };
 
+print("2");
+
 //why like this? fails on Rhino (which happened to have for running) #REX
 //ah apparently is a logging one, defined in LoggingExtras.js
 eval(assert(" parent.actionSystem.isEmpty() "));
 //assert(parent.actionSystem.isEmpty()); //REX
+//print(parent.actionSystem.isEmpty()); //REX
+
+print("3");
 
 var feedback = 0;
 
@@ -71,10 +79,11 @@ eval(assert(" act.startTime === 17001 "));
 eval(assert(" act.secondsLeft === 6 "));
 
 parent.actionSystem.queue(act);
-
+print("4");
 eval(assert(" !parent.actionSystem.isEmpty() "));
 
 parent.actionSystem.manageActions(2);
+print("5");
 
 eval(assert(" act.begun "));
 eval(assert(" !act.finished "));
@@ -88,7 +97,6 @@ var act2 = new Action( { secondsLeft: 1000 } );
 parent.actionSystem.queue(act2);
 
 parent.actionSystem.manageActions(3);
-
 eval(assert(" act.begun "));
 eval(assert(" !act.finished "));
 eval(assert(" act.secondsLeft === 1 "));
@@ -109,7 +117,8 @@ parent.actionSystem.manageActions(3000);
 eval(assert(" act2.finished "));
 eval(assert(" parent.actionSystem.isEmpty() "));
 
+print("Done with Actions__test.js");
+
 // Cleanup
 
 Testing.restoreEnvironment();
-
